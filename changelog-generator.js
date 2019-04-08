@@ -9,7 +9,9 @@ execSync(cmd, 'utf8', function () {
     if (err) {
       return console.log(err);
     }
-    var result = data.replace(/tag:(.*) -(.*)/g, '### $1').replace(/\n/g, '\r\n');
+    var result = data.replace(/tag:(.*) -(.*)/g, '### $1')
+            .replace(/\n/g, '\r\n')
+            .replace(/(.*) -\[/g,'  -[');
     fs.writeFile(file, result, 'utf8', function (err) {
       if (err) {
         return console.log(err);
