@@ -1,0 +1,64 @@
+{
+    "size": 0,
+    "_source": {
+      "excludes": []
+    },
+    "aggs": {
+      "2": {
+        "terms": {
+          "field": "path_with_params.keyword",
+          "size": 500,
+          "order": {
+            "_count": "desc"
+          }
+        }
+      }
+    },
+    "version": true,
+    "stored_fields": [
+      "*"
+    ],
+    "script_fields": {},
+    "docvalue_fields": [
+      "@timestamp"
+    ],
+    "query": {
+      "bool": {
+        "must": [
+          {"match": {"path.keyword" : "/products"}},
+          {"exists": {"field": "api"}},
+          {
+            "match_phrase": {
+              "api.keyword": {
+                "query": "v2-customers"
+              }
+            }
+          },
+          {
+            "range": {
+              "@timestamp": {
+                "gte": "now-60d",
+                "lte": "now",
+                "format": "epoch_millis"
+              }
+            }
+          }
+        ],
+        "filter": [],
+        "should": [],
+        "must_not": []
+      }
+    },
+    "highlight": {
+      "pre_tags": [
+        "@kibana-highlighted-field@"
+      ],
+      "post_tags": [
+        "@/kibana-highlighted-field@"
+      ],
+      "fields": {
+        "*": {}
+      },
+      "fragment_size": 2147483647
+    }
+  }

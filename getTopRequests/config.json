@@ -1,0 +1,5 @@
+{
+    "url": "http://bb-dev-es-external-6886a9c9fd637f9d.elb.eu-west-1.amazonaws.com:9200/_search",
+    "username": "",
+    "password": ""
+}
