@@ -12,6 +12,6 @@ def count(dir, filetype,exclude, counter=0):
                     print (file)
     return dir + " : " + str(counter) + " lines"
 
-print(count("D:\\pod\\pod",
-            ".java",
+print(count("D:\\projects\\krg\\Alexa Server Azure",
+            ".ts",
             [".git","node_modules"]))
